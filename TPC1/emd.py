@@ -41,18 +41,17 @@ def percentagens(dados):
     return (aptos/len(dados))*100, (inaptos/len(dados))*100
 
 def distribuicao(dados):
-    distribuicao = {}
+    distribuicao = {f"[{i*5}-{i*5 + 4}]": 0 for i in range(8)}
     for i in dados:
         idade = int(dados[i]['idade'])
-        escalao = (idade // 5) * 5 
-        escalao_label = f"[{escalao}-{escalao + 4}]" 
-        distribuicao[escalao_label] = distribuicao.get(escalao_label, 0) + 1
+        if 0 <= idade <= 39:
+            escalao = (idade // 5) * 5 
+            escalao_label = f"[{escalao}-{escalao + 4}]" 
+            distribuicao[escalao_label] += 1
     return distribuicao
 
 dados = parser_csv("emd.csv")
 dist = distribuicao(dados)
-
-print(dados)
 
 print("A lista de modalidades ordenadas alfabeticamente é: ", modalidades(dados))
 
@@ -60,5 +59,5 @@ print("A percentagem de atletas aptos é de: ", percentagens(dados)[0], "%")
 print("A percentagem de atletas inaptos é de: ", percentagens(dados)[1], "%")
 
 print("Distribuição de atletas por escalão etário:")
-for escalao, quantidade in sorted(dist.items()):
+for escalao, quantidade in sorted(dist.items(), key=lambda item: int(item[0].split('-')[0][1:])):
     print(f"{escalao}: {quantidade} atletas")
