@@ -1,20 +1,15 @@
 import re
 
-txt = "> hola"
-h1_exp = re.search("^#[^#].*$", txt)
-h2_exp = re.search("^#{2}[^#].*$", txt)
-h3_exp = re.search("^#{3}[^#].*$", txt)
-
-bold_exp = re.search("^\*{2}[^\*].*\*{2}$", txt)
-italic_exp = re.search("^\*[^\*].*\*$", txt)
-
-blockquote_exp = re.search(">.*", txt)
-
-list_exp = re.search("", txt)
-
-
-if blockquote_exp:
-    print("match")
-else:
-    print("no match")
+h1_exp = re.compile("^#[^#].*$")
+h2_exp = re.compile("^#{2}[^#].*$")
+h3_exp = re.compile("^#{3}[^#].*$")
+bold_exp = re.compile("^\*{2}[^\*].*\*{2}$")
+italic_exp = re.compile("^\*[^\*].*\*$")
+blockquote_exp = re.compile(">.*$")
+list_exp = re.compile("^\d\..*$")
+item_exp = re.compile("^-[^-].*$")
+code_exp = re.compile("^`{3}[^`].*\n[\s\S]*?`{3}$")
+bar_exp = re.compile("^--$")
+title_exp = re.compile("^\[\w*\]\([\w:\/.]*\)")
+image_exp = re.compile("^!\[[^\]]*\]\(\.\.\/[^\)]*\)")
 
