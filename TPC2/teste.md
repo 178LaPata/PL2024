@@ -18,12 +18,10 @@
 - Second item
 - Third item
 
-```c
-#include <stdio.h>
-```
-    
+`code`
+
 --
 
 [title](https://www.example.com)
 
-![alt text](../95454.jpg)
+![alt text](../95454.jpg)   
